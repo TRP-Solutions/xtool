@@ -13,7 +13,7 @@ $head = $html->el('head');
 $head->el('meta',['charset'=>'utf-8']);
 $head->el('meta',['name'=>'viewport','content'=>'width=device-width, initial-scale=1.0']);
 $head->el('title')->te(TITLE);
-$head->el('link',['rel'=>'stylesheet','href'=>'style.css?'.time()]);
+$head->el('link',['rel'=>'stylesheet','href'=>'style.css']);
 $head->el('script',['src'=>'lib/ufo-ajax/ufo.js']);
 
 if(empty($_GET['pattern'])) {
