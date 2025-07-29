@@ -10,7 +10,7 @@ CREATE TABLE `pattern` (
 	`pattern` text NOT NULL,
 	`replace` text NOT NULL,
 	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general1400_as_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 CREATE TABLE `test` (
 	`id` uuid NOT NULL DEFAULT uuid(),
@@ -20,6 +20,6 @@ CREATE TABLE `test` (
 	PRIMARY KEY (`id`),
 	KEY `pattern_id` (`pattern_id`),
 	FOREIGN KEY (`pattern_id`) REFERENCES `pattern` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general1400_as_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON `xtool`.* TO `xtool`@`localhost`;
