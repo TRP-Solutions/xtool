@@ -1,0 +1,71 @@
+/* 
+xTool is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/xtool/blob/main/LICENSE
+
+tailwindcss -i source.scss -o ../style.css --watch --minify
+*/
+@import "tailwindcss";
+
+html {
+	@apply p-3;
+}
+
+body {
+	@apply bg-slate-50;
+}
+
+h1 {
+	@apply text-xl font-bold;
+}
+
+h2 {
+	@apply mt-3 font-bold;
+}
+
+button, span, input, textarea, select {
+	@apply rounded-md border border-gray-500 inline-block;
+}
+
+button {
+	@apply bg-sky-300;
+}
+
+input, textarea, select {
+	@apply bg-gray-100 w-100;
+}
+
+table th, table td {
+	@apply px-1 border border-gray-500 whitespace-nowrap text-sm;
+}
+
+table tr td[monospace], input[monospace] {
+	@apply font-mono whitespace-pre;
+}
+
+table tr:hover td {
+	@apply bg-gray-200;
+}
+
+table tr[onclick] td, button[onclick] {
+	@apply cursor-pointer;
+}
+
+table tr td span, table tr td button, table tr td input, table tr td textarea, table tr td select {
+	@apply px-1.5 my-px;
+}
+
+table tr td span, table tr td button {
+	@apply w-full;
+}
+
+span[xtool-success], option[xtool-success] {
+	@apply bg-green-400;
+}
+
+span[xtool-danger], option[xtool-danger] {
+	@apply bg-red-400;
+}
+
+span[xtool-ignore], option[xtool-ignore] {
+	@apply bg-gray-300;
+}
