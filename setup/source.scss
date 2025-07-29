@@ -27,7 +27,7 @@ button, span, input, textarea, select {
 }
 
 button {
-	@apply bg-sky-300;
+	@apply bg-sky-200;
 }
 
 input, textarea, select {
@@ -43,7 +43,7 @@ table tr td[monospace], input[monospace] {
 }
 
 table tr:hover td {
-	@apply bg-gray-200;
+	@apply bg-gray-300;
 }
 
 table tr[onclick] td, button[onclick] {
@@ -59,13 +59,13 @@ table tr td span, table tr td button {
 }
 
 span[xtool-success], option[xtool-success] {
-	@apply bg-green-400;
+	@apply bg-green-200;
 }
 
 span[xtool-danger], option[xtool-danger] {
-	@apply bg-red-400;
+	@apply bg-red-500;
 }
 
 span[xtool-ignore], option[xtool-ignore] {
-	@apply bg-gray-300;
+	@apply bg-gray-200;
 }

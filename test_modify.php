@@ -16,15 +16,16 @@ if(empty($_GET['test'])) {
 	Ufo::output('header','New test');
 	$subject = '';
 	$passable = true;
+	$desired = '';
 }
 else {
 	$form->el('input',['type'=>'hidden','name'=>'test','value'=>$_GET['test']]);
 	Ufo::output('header','Modify test');
 	
 	$test_id = $mysqli->real_escape_string($_GET['test']);
-	$sql = "SELECT `subject`,`passable` FROM `test` WHERE `id` = '$test_id'";
+	$sql = "SELECT `subject`,`passable`,`desired` FROM `test` WHERE `id` = '$test_id'";
 	$query = $mysqli->query($sql);
-	if(!list($subject,$passable) = $query->fetch_array()) {
+	if(!list($subject,$passable,$desired) = $query->fetch_array()) {
 		exit;
 	}
 }
@@ -35,6 +36,10 @@ $tbody = $table->el('tbody');
 $tr = $tbody->el('tr');
 $tr->el('td')->el('label',['for'=>'subject'])->te('Subject');
 $tr->el('td')->el('textarea',['name'=>'subject','rows'=>3])->te($subject);
+
+$tr = $tbody->el('tr');
+$tr->el('td')->el('label',['for'=>'desired'])->te('Desired');
+$tr->el('td')->el('textarea',['name'=>'desired','rows'=>3])->te($desired);
 
 $tr = $tbody->el('tr');
 $tr->el('td')->el('label',['for'=>'passable'])->te('Passable');

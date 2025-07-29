@@ -52,10 +52,11 @@ $tr = $table->el('thead')->el('tr');
 $tr->el('th')->te('Input');
 $tr->el('th')->te('Passable');
 $tr->el('th')->te('Match');
-$tr->el('th')->te('Output');
+$tr->el('th')->te('Replace');
+$tr->el('th')->te('Desired');
 $tr->el('th');
 
-$sql = "SELECT `id`,`subject`,`passable` FROM `test` WHERE `pattern_id` = '$pattern_id' ORDER BY `subject`";
+$sql = "SELECT `id`,`subject`,`passable`,`desired` FROM `test` WHERE `pattern_id` = '$pattern_id' ORDER BY `subject`";
 $query_test = $mysqli->query($sql);
 
 $tbody = $table->el('tbody');
@@ -77,27 +78,34 @@ while($rs_test = $query_test->fetch_object()) {
 		$td->el('span',['xtool-danger'])->te(error_get_last()['message']);
 	}
 	else {
+		$replace_result = preg_replace('/'.$pattern.'/', $replace, $rs_test->subject);
 		if($match) {
-				if($rs_test->passable) {
-					$td->el('span',['xtool-success'])->te('OK');
+			if($rs_test->passable) {
+				if(!empty($rs_test->desired) && strcmp($rs_test->desired,$replace_result)!==0) {
+					$td->el('span',['xtool-danger'])->te('Not desired');
 				}
 				else {
-					$td->el('span',['xtool-danger'])->te('False positive');
+					$td->el('span',['xtool-success'])->te('OK');
 				}
 			}
-			elseif($rs_test->passable) {
-				$td->el('span',['xtool-danger'])->te('No match');
-			}
 			else {
-				$td->el('span',['xtool-ignore'])->te('Ignored');
+				$td->el('span',['xtool-danger'])->te('False positive');
 			}
-			$tr->el('td',['monospace'])->te(preg_replace('/'.$pattern.'/', $replace, $rs_test->subject));
+		}
+		elseif($rs_test->passable) {
+			$td->el('span',['xtool-danger'])->te('No match');
+		}
+		else {
+			$td->el('span',['xtool-ignore'])->te('Ignored');
+		}
+		$tr->el('td',['monospace'])->te($replace_result);
+		$tr->el('td')->te($rs_test->desired);
 	}
 	$onclick = "Ufo.get('main','test_modify.php?pattern=".$_GET['pattern']."&test=".$rs_test->id."')";
 	$tr->el('td')->el('button',['onclick'=>$onclick])->te('Edit');
 }
 $onclick = "Ufo.get('main','test_modify.php?pattern=".$_GET['pattern']."')";
-$tr = $tbody->el('tr')->el('td',['colspan'=>'5'])->el('button',['onclick'=>$onclick])->te('Add test');
+$tr = $tbody->el('tr')->el('td',['colspan'=>'6'])->el('button',['onclick'=>$onclick])->te('Add test');
 
 $html->el('h2')->te('Input pattern');
 $form = $html->el('form',['onsubmit'=>"alert('Ready');return false;"]);

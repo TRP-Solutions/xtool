@@ -17,6 +17,7 @@ CREATE TABLE `test` (
 	`pattern_id` uuid NOT NULL,
 	`subject` text NOT NULL,
 	`passable` tinyint(1) NOT NULL DEFAULT 0,
+	`desired` text NOT NULL,
 	PRIMARY KEY (`id`),
 	KEY `pattern_id` (`pattern_id`),
 	FOREIGN KEY (`pattern_id`) REFERENCES `pattern` (`id`) ON DELETE CASCADE

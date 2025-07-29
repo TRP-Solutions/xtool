@@ -14,6 +14,7 @@ if(empty($_POST['pattern'])) {
 $pattern_id = $mysqli->real_escape_string($_POST['pattern']);
 $subject = $mysqli->real_escape_string($_POST['subject']);
 $passable = empty($_POST['passable']) ? '0' : '1';
+$desired = $mysqli->real_escape_string($_POST['desired']);
 
 if(!empty($_POST['delete']) && $_POST['delete']==='confirm' && !empty($_POST['test'])) {
 	$test_id = $mysqli->real_escape_string($_POST['test']);
@@ -22,13 +23,13 @@ if(!empty($_POST['delete']) && $_POST['delete']==='confirm' && !empty($_POST['te
 }
 elseif(!empty($_POST['test'])) {
 	$test_id = $mysqli->real_escape_string($_POST['test']);
-	$sql = "UPDATE `test` SET `subject`='$subject',`passable`='$passable'
+	$sql = "UPDATE `test` SET `subject`='$subject',`passable`='$passable',`desired`='$desired'
 		WHERE `id`='$test_id'";
 	$mysqli->query($sql);
 }
 else {
-	$sql = "INSERT INTO `test` (`pattern_id`,`subject`,`passable`)
-		VALUES ('$pattern_id','$subject','$passable')";
+	$sql = "INSERT INTO `test` (`pattern_id`,`subject`,`passable`,`desired`)
+		VALUES ('$pattern_id','$subject','$passable','$desired')";
 	$mysqli->query($sql);
 }
 
