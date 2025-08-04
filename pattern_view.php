@@ -78,7 +78,7 @@ while($rs_test = $query_test->fetch_object()) {
 		$td->el('span',['xtool-danger'])->te(error_get_last()['message']);
 	}
 	else {
-		$replace_result = preg_replace('/'.$pattern.'/', $replace, $rs_test->subject);
+		$replace_result = preg_replace('/'.$pattern.'/u', $replace, $rs_test->subject);
 		if($match) {
 			if($rs_test->passable) {
 				if(!empty($rs_test->desired) && strcmp($rs_test->desired,$replace_result)!==0) {
