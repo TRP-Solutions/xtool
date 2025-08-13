@@ -99,7 +99,7 @@ while($rs_test = $query_test->fetch_object()) {
 			$td->el('span',['xtool-ignore'])->te('Ignored');
 		}
 		$tr->el('td',['monospace'])->te($replace_result);
-		$tr->el('td')->te($rs_test->desired);
+		$tr->el('td',['monospace'])->te($rs_test->desired);
 	}
 	$onclick = "Ufo.get('main','test_modify.php?pattern=".$_GET['pattern']."&test=".$rs_test->id."')";
 	$tr->el('td')->el('button',['onclick'=>$onclick])->te('Edit');

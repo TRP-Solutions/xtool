@@ -42,6 +42,16 @@ table tr td[monospace], input[monospace] {
 	@apply font-mono whitespace-pre;
 }
 
+table tr td[monospace]:not(:empty):before {
+	@apply text-neutral-500;
+	content: '»';
+}
+
+table tr td[monospace]:not(:empty):after {
+	@apply text-neutral-500;
+	content: '«';
+}
+
 table tr:hover td {
 	@apply bg-gray-300;
 }
